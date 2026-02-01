@@ -40,9 +40,29 @@ duke_forest |>
 #| label: price-garage
 
 # add code here
+
+duke_forest |>
+  mutate(
+    garage = if_else(str_detect(parking, "Garage"),   "Garage", "No garage")
+    ) |>
+  ggplot(aes(x = price, fill = garage)) +
+  geom_histogram(binwidth = 40000) +
+  facet_wrap(~ garage) +
+  labs(
+    title = "House Prices in Duke Forest based on having a garage",
+    x = "House Price",
+    y = "Number of houses"
+  ) +
+  theme(legend.position = "none")
+
 ```
 
 Add narrative here...
+
+Houses that include a garage appear to be listed at a higher price more often then houses with no garage.
+But that being said there is a lot of overlap between the two graphs - so having a garage or not is not the 
+only driver in house price. So having a garage makes a difference to a certain extent - but it is not the 
+only factor when considering house prices.
 
 ::: callout-important
 Now is a good time to render, commit, and push.
