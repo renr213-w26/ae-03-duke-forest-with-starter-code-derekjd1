@@ -1,5 +1,7 @@
 ---
 title: "AE 03: Duke Forest + data visualization"
+author: "Derek Dubrule"
+date: "Feb 1st, 2026"
 ---
 
 ```{r}
