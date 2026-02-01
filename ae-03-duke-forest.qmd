@@ -90,9 +90,34 @@ Once again, data visualization skills to the rescue!
 #| label: price-area
 
 # add code here
+ggplot(duke_forest, aes(x = area, y = price, color = year_built)) +
+  geom_point() +
+  geom_smooth(se = FALSE) +
+  scale_color_gradient(low = "green", high = "red") +
+  labs(
+    title = "House price in comparison to the area in Duke Forest",
+    x = "Area in sq ft",
+    y = "Price $",
+    color = "Year Built"
+  )
 ```
 
 Add narrative here...
+
+claim 1:
+The plot shows a positive relationship between area and price: as area increases, price usually increases as well.
+This is highlighted through the smooth curve as there is a clear trend upwards.
+
+claim 2:
+Newer homes with a higher year built age(orange / red) appear more often among the higher priced listings.
+But this pattern is not a clear positive relationship, there are still older houses that are expensive and new
+houses that cost less.
+
+claim 3:
+The majority of the biggest and most expensive homes are colored as a newer in comparison to the
+smaller and less expensive homes which tend to be older. So this supports the claim that Bigger and 
+more expensive houses tend to be newer ones than smaller and cheaper ones.
+
 
 ::: callout-important
 Now is a good time to render, commit, and push.
