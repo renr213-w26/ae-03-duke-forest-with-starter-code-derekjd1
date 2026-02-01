@@ -1,5 +1,7 @@
 ---
 title: "AE 03: Duke Forest + data visualization"
+author: "Derek Dubrule"
+date: "Feb 1st, 2026"
 ---
 
 ```{r}
@@ -38,9 +40,29 @@ duke_forest |>
 #| label: price-garage
 
 # add code here
+
+duke_forest |>
+  mutate(
+    garage = if_else(str_detect(parking, "Garage"),   "Garage", "No garage")
+    ) |>
+  ggplot(aes(x = price, fill = garage)) +
+  geom_histogram(binwidth = 40000) +
+  facet_wrap(~ garage) +
+  labs(
+    title = "House Prices in Duke Forest based on having a garage",
+    x = "House Price",
+    y = "Number of houses"
+  ) +
+  theme(legend.position = "none")
+
 ```
 
 Add narrative here...
+
+Houses that include a garage appear to be listed at a higher price more often then houses with no garage.
+But that being said there is a lot of overlap between the two graphs - so having a garage or not is not the 
+only driver in house price. So having a garage makes a difference to a certain extent - but it is not the 
+only factor when considering house prices.
 
 ::: callout-important
 Now is a good time to render, commit, and push.
@@ -68,9 +90,34 @@ Once again, data visualization skills to the rescue!
 #| label: price-area
 
 # add code here
+ggplot(duke_forest, aes(x = area, y = price, color = year_built)) +
+  geom_point() +
+  geom_smooth(se = FALSE) +
+  scale_color_gradient(low = "green", high = "red") +
+  labs(
+    title = "House price in comparison to the area in Duke Forest",
+    x = "Area in sq ft",
+    y = "Price $",
+    color = "Year Built"
+  )
 ```
 
 Add narrative here...
+
+claim 1:
+The plot shows a positive relationship between area and price: as area increases, price usually increases as well.
+This is highlighted through the smooth curve as there is a clear trend upwards.
+
+claim 2:
+Newer homes with a higher year built age(orange / red) appear more often among the higher priced listings.
+But this pattern is not a clear positive relationship, there are still older houses that are expensive and new
+houses that cost less.
+
+claim 3:
+The majority of the biggest and most expensive homes are colored as a newer in comparison to the
+smaller and less expensive homes which tend to be older. So this supports the claim that Bigger and 
+more expensive houses tend to be newer ones than smaller and cheaper ones.
+
 
 ::: callout-important
 Now is a good time to render, commit, and push.
